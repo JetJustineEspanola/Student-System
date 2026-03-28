@@ -1,5 +1,7 @@
 package app;
 
+import ui.MainFrame;
+
 /**
  * Main entry point for the Student Information System application.
  *
@@ -8,9 +10,11 @@ package app;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO: Initialize the main application frame
-		// - Create a new MainFrame instance
-		// - Set it to visible
-		// - Configure window properties (size, close operation, etc.)
+		// Run on Event Dispatch Thread for thread safety
+		javax.swing.SwingUtilities.invokeLater(() -> {
+			// Create and display the main application window
+			MainFrame frame = new MainFrame();
+			frame.setVisible(true);
+		});
 	}
 }

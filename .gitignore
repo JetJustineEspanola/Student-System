@@ -1,48 +1,111 @@
-# Compiled Java classes
+# ─────────────────────────────────────────────────────
+# Compiled Java & Build Output
+# ─────────────────────────────────────────────────────
 build/
+bin/
+dist/
 *.class
 *.o
 *.so
+*.jar
 
-# IDE
+# PostgreSQL JDBC Driver (each dev downloads their own)
+lib/*.jar
+lib/postgresql*.jar
+
+# ─────────────────────────────────────────────────────
+# IDE & Editor Files
+# ─────────────────────────────────────────────────────
+
+## IntelliJ IDEA
 .idea/
-.vscode/
-*.swp
-*.swo
-*~
-.DS_Store
 *.iml
 *.iws
 *.ipr
+out/
 
-# Build tools
+## Eclipse
+.project
+.classpath
+.settings/
+.eclipse/
+bin/
+nbproject/
+
+## VS Code
+.vscode/
+*.code-workspace
+
+## Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+## Vim/Neovim
+*.swp
+*.swo
+*~
+.vim/
+
+## General Editor
+*.orig
+
+# ─────────────────────────────────────────────────────
+# Build Tools
+# ─────────────────────────────────────────────────────
 .gradle/
 .maven/
 target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
 
-# Database
+# ─────────────────────────────────────────────────────
+# Database & Local Files
+# ─────────────────────────────────────────────────────
 *.db
 *.sqlite
+*.sqlite3
+*.sql.bak
+local_config.properties
 
-# Logs
+# ─────────────────────────────────────────────────────
+# Logs & Temporary Files
+# ─────────────────────────────────────────────────────
 *.log
+logs/
+*.tmp
+*.temp
+*.cache
 
-# Environment
+# ─────────────────────────────────────────────────────
+# Environment & Secrets
+# ─────────────────────────────────────────────────────
 .env
 .env.local
+.env.*.local
+.env.properties
+local.properties
+secrets/
 
-# OS
-Thumbs.db
+# ─────────────────────────────────────────────────────
+# Operating System Files
+# ─────────────────────────────────────────────────────
 .DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
 
-# IDE specific
-nbproject/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# ─────────────────────────────────────────────────────
+# Project-Specific
+# ─────────────────────────────────────────────────────
+# Keep source files, exclude generated/temporary
+*.class.bak
+*.bak
 
-# Keep folder structures
-# .gitkeep files ensure empty directories are tracked
+# Keep .gitkeep files — they ensure folder structure is tracked
+# DO NOT ignore .gitkeep files

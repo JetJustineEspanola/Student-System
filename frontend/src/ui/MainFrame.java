@@ -427,7 +427,7 @@ public class MainFrame extends JFrame {
 	// ─────────────────────────────────────────────────────────────────────────
 	private void updateHeader(String panelName) {
 		String label = labelFor(panelName);
-		lblBreadcrumb.setText("" + label);
+		lblBreadcrumb.setText(label);
 		lblPageTitle.setText(pageTitleFor(panelName));
 	}
 

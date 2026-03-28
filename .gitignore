@@ -1,0 +1,48 @@
+# Compiled Java classes
+build/
+*.class
+*.o
+*.so
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+
+# Build tools
+.gradle/
+.maven/
+target/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE specific
+nbproject/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Keep folder structures
+# .gitkeep files ensure empty directories are tracked

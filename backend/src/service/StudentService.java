@@ -1,15 +1,18 @@
 package service;
 
 import dao.StudentDAO;
+import model.Student;
+
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import model.Student;
 
 /**
  * Student Service
  *
  * Responsibility: Wrap StudentDAO, handle business logic, called by frontend forms
  * Rule: ONLY Service calls DAO, never directly from UI
+ * BE2 - DAO & CRUD Operations
  */
 public class StudentService {
 
@@ -27,13 +30,21 @@ public class StudentService {
 	 * @throws SQLException if insertion fails
 	 */
 	public void insertStudent(String fullName, String address, Date birthdate,
-								String placeOfBirth, String degree,
-								String major) throws Exception {
-		// TODO: Implement business logic for inserting a student
-		// - Validate input (can use Validator class)
-		// - Create Student object with parameters
-		// - Call studentDAO.insertStudent(student)
-		// - Handle any exceptions
+							  String placeOfBirth, String degree,
+							  String major) throws SQLException {
+		try {
+			// Create Student object
+			Student student = new Student(fullName, address, birthdate, placeOfBirth, degree, major);
+			
+			// Call DAO to insert
+			studentDAO.insertStudent(student);
+			
+			System.out.println("[StudentService] Successfully inserted student: " + fullName);
+			
+		} catch (SQLException e) {
+			System.err.println("[StudentService] Error inserting student: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	/**
@@ -42,11 +53,13 @@ public class StudentService {
 	 * @return List of all students
 	 * @throws SQLException if query fails
 	 */
-	public List<Student> getAllStudents() throws Exception {
-		// TODO: Implement retrieval of all students
-		// - Call studentDAO.getAllStudents()
-		// - Return the list
-		return null;
+	public List<Student> getAllStudents() throws SQLException {
+		try {
+			return studentDAO.getAllStudents();
+		} catch (SQLException e) {
+			System.err.println("[StudentService] Error retrieving all students: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	/**
@@ -56,10 +69,12 @@ public class StudentService {
 	 * @return Student object or null if not found
 	 * @throws SQLException if query fails
 	 */
-	public Student getStudentById(int studentId) throws Exception {
-		// TODO: Implement retrieval of student by ID
-		// - Call studentDAO.getStudentById(studentId)
-		// - Return the student
-		return null;
+	public Student getStudentById(int studentId) throws SQLException {
+		try {
+			return studentDAO.getStudentById(studentId);
+		} catch (SQLException e) {
+			System.err.println("[StudentService] Error retrieving student by ID: " + e.getMessage());
+			throw e;
+		}
 	}
 }

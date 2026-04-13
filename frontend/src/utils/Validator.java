@@ -1,5 +1,8 @@
 package utils;
 
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
 /**
  * Validator
  *
@@ -8,8 +11,11 @@ package utils;
  * - Validates date formats
  * - Validates grade range (1.0 to 5.0)
  * - Provides static validation methods called by UI panels
+ * FE2 - Student Forms (Input)
  */
 public class Validator {
+
+	private static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	/**
 	 * Validate that a string is not empty
@@ -18,9 +24,7 @@ public class Validator {
 	 * @return true if not empty, false otherwise
 	 */
 	public static boolean isNotEmpty(String value) {
-		// TODO: Implement empty check
-		// - Return true if value != null && !value.trim().isEmpty()
-		return false;
+		return value != null && !value.trim().isEmpty();
 	}
 
 	/**
@@ -30,11 +34,17 @@ public class Validator {
 	 * @return true if valid format, false otherwise
 	 */
 	public static boolean isValidDateFormat(String dateString) {
-		// TODO: Implement date format validation
-		// - Check if dateString matches yyyy-MM-dd format
-		// - Try to parse and catch DateParseException
-		// - Return true if valid, false otherwise
-		return false;
+		if (!isNotEmpty(dateString)) {
+			return false;
+		}
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+			sdf.setLenient(false);
+			sdf.parse(dateString);
+			return true;
+		} catch (ParseException e) {
+			return false;
+		}
 	}
 
 	/**
@@ -44,9 +54,59 @@ public class Validator {
 	 * @return true if 1.0 <= grade <= 5.0, false otherwise
 	 */
 	public static boolean isValidGrade(double grade) {
-		// TODO: Implement grade range validation
-		// - Return true if grade >= 1.0 && grade <= 5.0
-		return false;
+		return grade >= 1.0 && grade <= 5.0;
+	}
+
+	/**
+	 * Parse date string to java.util.Date
+	 *
+	 * @param dateString the date string (format: yyyy-MM-dd)
+	 * @return java.util.Date object or null if parse fails
+	 */
+	public static java.util.Date parseDate(String dateString) {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+			sdf.setLenient(false);
+			return sdf.parse(dateString);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Validate that a string is a valid integer
+	 *
+	 * @param value the string to validate
+	 * @return true if valid integer, false otherwise
+	 */
+	public static boolean isValidInteger(String value) {
+		if (!isNotEmpty(value)) {
+			return false;
+		}
+		try {
+			Integer.parseInt(value.trim());
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Validate that a string is a valid double
+	 *
+	 * @param value the string to validate
+	 * @return true if valid double, false otherwise
+	 */
+	public static boolean isValidDouble(String value) {
+		if (!isNotEmpty(value)) {
+			return false;
+		}
+		try {
+			Double.parseDouble(value.trim());
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 	/**

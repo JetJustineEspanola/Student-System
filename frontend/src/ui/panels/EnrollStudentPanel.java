@@ -213,6 +213,20 @@ public class EnrollStudentPanel extends JPanel {
 	}
 
 	/**
+	 * Refresh dropdown data when panel becomes visible
+	 */
+	public void refreshData() {
+		try {
+			studentList = studentService.getAllStudents();
+			courseList = courseDAO.getAllCourses();
+			populateStudentDropdown();
+			populateCourseDropdown();
+		} catch (Exception e) {
+			System.err.println("[EnrollStudentPanel] Error refreshing data: " + e.getMessage());
+		}
+	}
+
+	/**
 	 * Validate and enroll a student
 	 */
 	private void enrollStudent() {

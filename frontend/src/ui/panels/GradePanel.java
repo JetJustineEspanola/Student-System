@@ -56,6 +56,18 @@ public class GradePanel extends JPanel {
 		initializeComponents();
 	}
 
+	public void refreshData() {
+	try {
+		studentList = studentService.getAllStudents();
+		courseList = courseDAO.getAllCourses();
+		populateStudentDropdown();
+		onStudentSelected();
+	} catch (Exception e) {
+		System.err.println("[GradePanel] Error refreshing data: " + e.getMessage());
+		e.printStackTrace();
+	}
+}
+
 	/**
 	 * Set panel padding
 	 */

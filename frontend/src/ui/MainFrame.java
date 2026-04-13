@@ -37,6 +37,11 @@ public class MainFrame extends JFrame {
 	private JLabel lblBreadcrumb;
 	private JLabel lblPageTitle;
 	private JButton activeNavButton;
+	private RegisterStudentPanel registerStudentPanel;
+	private EnrollStudentPanel enrollStudentPanel;
+	private GradePanel gradePanel;
+	private TranscriptPanel transcriptPanel;
+	private ClassListPanel classListPanel;
 
 	// ── Nav item registry (panel name → display label) ────────────────────────
 	private static final String[][] NAV_ITEMS = {
@@ -291,12 +296,18 @@ public class MainFrame extends JFrame {
 				AppTheme.CONTENT_PADDING, AppTheme.CONTENT_PADDING));
 
 		// Register all panels
+		registerStudentPanel = new RegisterStudentPanel();
+		enrollStudentPanel = new EnrollStudentPanel();
+		gradePanel = new GradePanel();
+		transcriptPanel = new TranscriptPanel();
+		classListPanel = new ClassListPanel();
+
 		cardContainer.add(buildDashboardPanel(), PANEL_DASHBOARD);
-		cardContainer.add(new RegisterStudentPanel(), PANEL_REGISTER);
-		cardContainer.add(new EnrollStudentPanel(), PANEL_ENROLL);
-		cardContainer.add(new GradePanel(), PANEL_GRADE);
-		cardContainer.add(new TranscriptPanel(), PANEL_TOR);
-		cardContainer.add(new ClassListPanel(), PANEL_CLASSLIST);
+		cardContainer.add(registerStudentPanel, PANEL_REGISTER);
+		cardContainer.add(enrollStudentPanel, PANEL_ENROLL);
+		cardContainer.add(gradePanel, PANEL_GRADE);
+		cardContainer.add(transcriptPanel, PANEL_TOR);
+		cardContainer.add(classListPanel, PANEL_CLASSLIST);
 
 		area.add(header, BorderLayout.NORTH);
 		area.add(new JScrollPane(cardContainer) {
@@ -417,6 +428,16 @@ public class MainFrame extends JFrame {
 	 * @param panelName one of the PANEL_* constants defined above
 	 */
 	public void showPanel(String panelName) {
+		if (PANEL_ENROLL.equals(panelName)) {
+			enrollStudentPanel.refreshData();
+		} else if (PANEL_GRADE.equals(panelName)) {
+			gradePanel.refreshData();
+		} else if (PANEL_TOR.equals(panelName)) {
+			transcriptPanel.refreshData();
+		} else if (PANEL_CLASSLIST.equals(panelName)) {
+			classListPanel.refreshData();
+		}
+
 		cardLayout.show(cardContainer, panelName);
 		updateHeader(panelName);
 		updateActiveNavButton(panelName);

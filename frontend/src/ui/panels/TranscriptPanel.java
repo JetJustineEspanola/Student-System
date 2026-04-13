@@ -243,6 +243,10 @@ public class TranscriptPanel extends JPanel {
 		label.setForeground(AppTheme.TEXT_PRIMARY);
 		return label;
 	}
+	
+	public void refreshData() {
+	loadStudents();
+}
 
 	/**
 	 * Handle View button click

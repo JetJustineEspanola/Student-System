@@ -16,7 +16,7 @@ public class DBConnection {
 	// Database connection parameters
 	private static final String URL = "jdbc:postgresql://localhost:5432/school1_db";
 	private static final String USER = "postgres";
-	private static final String PASSWORD = "postgres";
+	private static final String PASSWORD = "Zqxwce1234";
 	private static final String DRIVER = "org.postgresql.Driver";
 
 	static {
